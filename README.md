@@ -1,4 +1,4 @@
-#Celtic Knots
+# Celtic Knots
 
 
 Celtic Knots is a Windows screen saver I wrote in C++ some number of years ago.
@@ -17,6 +17,6 @@ splines](http://codeplea.com/introduction-to-splines). The file *spline.hpp* is
 self-contained and may be of use to someone needing spline calculations. The
 finial knot geometry is rendered using OpenGL.
 
-#Demo
+# Demo
 
 ![celtic_knot demo](demo.gif)
