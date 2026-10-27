@@ -20,3 +20,16 @@ finial knot geometry is rendered using OpenGL.
 # Demo
 
 ![celtic_knot demo](demo.gif)
+
+# Building
+
+The screen saver cross-compiles from Linux or WSL with MinGW-w64. On Debian or
+Ubuntu:
+
+    sudo apt install g++-mingw-w64-x86-64
+    make
+
+This produces a 64-bit `celtic_knots.scr`. On Windows with MinGW or MSYS2, run
+`make CXX=g++ CC=gcc` instead. The file *third_party/scrnsave.c* is the
+public-domain screen saver library from mingw-w64, compiled in directly because
+some Linux distributions ship an empty 64-bit `libscrnsave.a`.
