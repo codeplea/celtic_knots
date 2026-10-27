@@ -313,14 +313,11 @@ namespace CKnot
                         n.dir = bRight;
                         unused.insert(n);
                     }
-
-
-                    {//Sort junctions.
-                        for (JunctionMap::const_iterator it = junctions.begin(); it != junctions.end(); ++it)
-                            it->second->mids.sort(VecAngleComp(it->second->position));
-                    }
                 }
 
+                //Sort junctions.
+                for (JunctionMap::const_iterator it = junctions.begin(); it != junctions.end(); ++it)
+                    it->second->mids.sort(VecAngleComp(it->second->position));
             }
 
             ~Graph()

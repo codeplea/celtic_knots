@@ -87,7 +87,7 @@ namespace CKnot
             ZVector mZs;
     };
 
-    typedef std::auto_ptr<Art> AutoArt;
+    typedef std::unique_ptr<Art> AutoArt;
 
     AutoArt CreateThread(const StrokeList& strokes); ///<Given a stroke list, creates a thread running through them. The caller should delete the splines.
 }

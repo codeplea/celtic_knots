@@ -299,7 +299,7 @@ namespace Spline
                  * \param copy If true xs and ys are copied, if false they are not (and the original data must remain valid for the life of the spline).
                  */
                 Spline(const FT* xs, const ST* ys, size_t n, bool loop, bool copy)
-                    :mN(n), mLoop(loop), mCopy(copy)
+                    :mN(n), mLoop(loop), mCopy(copy), mLastIndex(0)
                 {
                     assert(mN > 1);
 
@@ -532,7 +532,7 @@ namespace Spline
             virtual ~Hermite()
             {
                 if (this->mCopy)
-                    delete mMs;
+                    delete[] mMs;
             }
 
             virtual ST Y(FT x) const

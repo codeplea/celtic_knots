@@ -141,31 +141,23 @@ CKnot::StrokeList CreateSquareStrokes()
     const size_t junctionsX = size_t(junctionsPer * width);
     const size_t junctionsY = size_t(junctionsPer * height);
 
-    //cx and nx store the current and next x.
-    //They must not be recalculated each iteration, or the results sometimes don't
-    //match (even if they are calculated in EXACTLY the same way).
-    double cx = double(1) / junctionsX * width;
+    //Precompute junction coordinates once so that shared endpoints compare exactly.
+    std::vector<double> xs(junctionsX + 1), ys(junctionsY + 1);
+    for (size_t x = 0; x <= junctionsX; ++x)
+        xs[x] = double(x) / junctionsX * width;
+    for (size_t y = 0; y <= junctionsY; ++y)
+        ys[y] = double(y) / junctionsY * height;
 
     for (size_t x = 1; x < junctionsX; ++x)
     {
-        double nx = double(x + 1) / junctionsX * width;
-
-        double cy = double(1) / junctionsY * height;
-
         for (size_t y = 1; y < junctionsY; ++y)
         {
-            double ny = double(y + 1) / junctionsY * height;
-
             if (x + 1 != junctionsX)
-                sl.push_back(CKnot::Stroke(CKnot::vec2(cx, cy), CKnot::vec2(nx, cy), RandomType()));
+                sl.push_back(CKnot::Stroke(CKnot::vec2(xs[x], ys[y]), CKnot::vec2(xs[x + 1], ys[y]), RandomType()));
 
             if (y + 1 != junctionsY)
-                sl.push_back(CKnot::Stroke(CKnot::vec2(cx, cy), CKnot::vec2(cx, ny), RandomType()));
-
-            cy = ny;
+                sl.push_back(CKnot::Stroke(CKnot::vec2(xs[x], ys[y]), CKnot::vec2(xs[x], ys[y + 1]), RandomType()));
         }
-
-        cx = nx;
     }
 
     return sl;
